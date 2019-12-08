@@ -1,14 +1,8 @@
-#include <iostream>
-#include <string.h>
-using namespace std;
-
 class Date{
-private:
+public:
 	int month;
 	int day;
 	int year;
-
-public:
 	static string Months[13];
 
 Date(){
@@ -96,46 +90,46 @@ void nextDay(){
 
 int noOfDaysInMonth(int month){
 	switch(month){
-case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 31;
-case 4: case 6: case 9: case 11: return 30;
+		case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 31;
+		case 4: case 6: case 9: case 11: return 30;
 
 }
 }
 
 int noOfDaysPassedInYear(){
-int days = day;
+	int days = day;
 
-for(int i=1; i<month; i++){
-days += noOfDaysInMonth(i);
+	for(int i=1; i<month; i++){
+	days += noOfDaysInMonth(i);
 }
-return days;
+	return days;
 }
 
 
 int noOfDaysRemainingInYear(){
-int days;
+	int days;
 }
 
 Date addDays(int days){
-Date t;
-int d;
+	Date t;
+	int d;
 
-int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 
 if(days<noOfDaysRemainingInYear()){
-d = noOfDaysPassedInYear() + days;
-t.year = year;
+	d = noOfDaysPassedInYear() + days;
+	t.year = year;
 }
-else{
-days = days - noOfDaysRemainingInYear();
-t.year = year + 1;
+	else{
+	days = days - noOfDaysRemainingInYear();
+	t.year = year + 1;
 }
 
-int i;
-for(int i=0;i<12;i++){
-if(d<months[i]) break;
-d = d - months[i];
+	int i;
+	for(int i=0;i<12;i++){
+	if(d<months[i]) break;
+	d = d - months[i];
 }
 
 t.day = d;
@@ -149,17 +143,3 @@ return t;
 string Date::Months[13] = {"", "January", "February", "March", "April",
 "May", "June", "July", "August", "September",
                    "October", "November", "December"};
-
-
-int main(){
-Date d(1, 1, 2019);
-
-d.showDate("");
-
-d.nextDay();
-
-d.showDate("");
-
-
-return 0;
-}
